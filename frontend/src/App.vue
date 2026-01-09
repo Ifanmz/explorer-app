@@ -6,7 +6,7 @@ import FolderChildren from "./components/FolderChildren.vue";
 
 const allFolders = ref([]);
 const selectedChildren = ref([]);
-const selectedFolderId = ref<number | null>(null);
+const selectedFolderId = ref<string | null>(null);
 const searchQuery = ref("");
 
 const filteredFolders = computed(() => {
@@ -18,9 +18,9 @@ const filteredFolders = computed(() => {
 
 const isSearchMode = computed(() => !!searchQuery.value);
 
-const selectFolder = (id: number) => {
+const selectFolder = (id: string) => {
   selectedFolderId.value = id;
-  selectedChildren.value = allFolders.value.filter(folder => folder.parentId === id);
+  selectedChildren.value = allFolders.value.filter(folder => folder.parentid === id);
 };
 
 onMounted(async () => {
@@ -54,7 +54,7 @@ onMounted(async () => {
         <FolderTree
           v-else
           :folders="allFolders"
-          :parentId="null"
+          :parentId="'1'"
           :selectedId="selectedFolderId"
           @select="selectFolder"
         />

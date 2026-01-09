@@ -3,17 +3,17 @@ import { ref, computed } from "vue";
 
 const props = defineProps<{
   folders: any[];
-  parentId: number | null;
-  selectedId?: number | null;
+  parentId: string | null;
+  selectedId?: string | null;
 }>();
 
 const emit = defineEmits<{
-  select: [id: number];
+  select: [id: string];
 }>();
 
-const expanded = ref<number[]>([]);
+const expanded = ref<string[]>([]);
 
-const toggle = (id: number) => {
+const toggle = (id: string) => {
   const index = expanded.value.indexOf(id);
   if (index > -1) {
     expanded.value.splice(index, 1);
@@ -22,16 +22,16 @@ const toggle = (id: number) => {
   }
 };
 
-const selectFolder = (id: number) => {
+const selectFolder = (id: string) => {
   emit('select', id);
 };
 
 const children = computed(() =>
-  props.folders.filter(f => f.parentId === props.parentId)
+  props.folders.filter(f => f.parentid === props.parentId)
 );
 
-const hasChildren = (id: number) => {
-  return props.folders.some(f => f.parentId === id);
+const hasChildren = (id: string) => {
+  return props.folders.some(f => f.parentid === id);
 };
 </script>
 
