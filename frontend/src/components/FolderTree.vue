@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { type Folder } from "../api/folderApi";
 
 const props = defineProps<{
-  folders: any[];
+  folders: Folder[];
   parentId: string | null;
   selectedId?: string | null;
 }>();

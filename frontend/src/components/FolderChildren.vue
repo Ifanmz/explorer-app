@@ -1,5 +1,7 @@
 <script setup lang="ts">
-defineProps<{ folders: any[] }>();
+import { type Folder } from "../api/folderApi";
+
+defineProps<{ folders: Folder[] }>();
 </script>
 
 <template>

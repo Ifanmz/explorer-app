@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
-import { getAllFolders } from "./api/folderApi";
+import { getAllFolders, type Folder } from "./api/folderApi";
 import FolderTree from "./components/FolderTree.vue";
 import FolderChildren from "./components/FolderChildren.vue";
 
-const allFolders = ref([]);
-const selectedChildren = ref([]);
+const allFolders = ref<Folder[]>([])
+const selectedChildren = ref<Folder[]>([]);
 const selectedFolderId = ref<string | null>(null);
 const searchQuery = ref("");
 
@@ -25,7 +25,7 @@ const selectFolder = (id: string) => {
 
 onMounted(async () => {
   const res = await getAllFolders();
-  allFolders.value = res?.data || res;
+  allFolders.value = res;
 });
 </script>
 
