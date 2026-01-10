@@ -6,7 +6,8 @@ export const app = new Elysia()
   .use(cors({
     origin: [
     "http://localhost:5173",
-    "https://explorer.app"
+    "https://explorer.app",
+    "https://explorer-app-sand.vercel.app/"
   ],
     methods: ["GET"]
   }))
