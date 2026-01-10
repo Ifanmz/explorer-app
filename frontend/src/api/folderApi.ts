@@ -15,7 +15,7 @@ export interface Folder {
  * Axios instance configured for folder API requests
  */
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 3000,
 });
 
