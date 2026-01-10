@@ -7,7 +7,7 @@ export const app = new Elysia()
     origin: [
     "http://localhost:5173",
     "https://explorer.app",
-    "https://explorer-app-sand.vercel.app/"
+    "https://explorer-app-sand.vercel.app"
   ],
     methods: ["GET"]
   }))
