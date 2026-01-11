@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type Folder } from "../api/folderApi";
+import { getFileIcon } from "../utils/fileIcon";
 
 defineProps<{ folders: Folder[] }>();
 </script>
@@ -11,7 +12,7 @@ defineProps<{ folders: Folder[] }>();
     </div>
     <div v-else class="folder-grid">
       <div v-for="folder in folders" :key="folder.id" class="folder-card">
-        <div class="folder-icon">📁</div>
+        <div class="folder-icon">{{ getFileIcon(folder) }}</div>
         <div class="folder-name">{{ folder.name }}</div>
       </div>
     </div>

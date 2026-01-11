@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { type Folder } from "../api/folderApi";
+import { getFileIcon } from "../utils/fileIcon";
 
 const props = defineProps<{
   folders: Folder[];
@@ -49,7 +50,7 @@ const hasChildren = (id: string) => {
         </span>
         <span class="expand-icon placeholder" v-else></span>
         
-        <span class="folder-icon">📁</span>
+        <span class="folder-icon">{{ getFileIcon(folder) }}</span>
         <span class="folder-name" @click="selectFolder(folder.id)">
           {{ folder.name }}
         </span>

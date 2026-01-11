@@ -3,11 +3,13 @@ import { ref, onMounted, computed } from "vue";
 import { getAllFolders, type Folder } from "./api/folderApi";
 import FolderTree from "./components/FolderTree.vue";
 import FolderChildren from "./components/FolderChildren.vue";
+import { getFileIcon } from "./utils/fileIcon";
 
-const allFolders = ref<Folder[]>([])
+const allFolders = ref<Folder[]>([]);
 const selectedChildren = ref<Folder[]>([]);
 const selectedFolderId = ref<string | null>(null);
 const searchQuery = ref("");
+const isLoading = ref(true);
 
 const filteredFolders = computed(() => {
   if (!searchQuery.value) return allFolders.value;
@@ -24,13 +26,22 @@ const selectFolder = (id: string) => {
 };
 
 onMounted(async () => {
-  const res = await getAllFolders();
-  allFolders.value = res;
+  try {
+    const res = await getAllFolders();
+    allFolders.value = res;
+  } finally {
+    isLoading.value = false;
+  }
 });
 </script>
 
 <template>
   <div class="explorer">
+    <div v-if="isLoading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading folders...</p>
+    </div>
+    <template v-else>
     <div class="search-bar">
       <input 
         v-model="searchQuery" 
@@ -47,7 +58,7 @@ onMounted(async () => {
           <div v-for="folder in filteredFolders" :key="folder.id" class="search-item" 
                :class="{ selected: selectedFolderId === folder.id }"
                @click="selectFolder(folder.id)">
-            <span class="folder-icon">📁</span>
+            <span class="folder-icon">{{ getFileIcon(folder) }}</span>
             <span class="folder-name">{{ folder.name }}</span>
           </div>
         </div>
@@ -65,6 +76,7 @@ onMounted(async () => {
         <FolderChildren :folders="selectedChildren" />
       </div>
     </div>
+    </template>
   </div>
 </template>
 
@@ -153,5 +165,29 @@ h3 {
 
 .search-item .folder-name {
   flex: 1;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #495057;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1976d2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
