@@ -1,15 +1,67 @@
-# backend
+# Explorer App Backend
 
-To install dependencies:
+REST API backend for file explorer application using Bun and Elysia.
 
+## Tech Stack
+
+- **Runtime**: Bun
+- **Framework**: Elysia
+- **Database**: PostgreSQL (Supabase)
+- **Language**: TypeScript
+
+## Setup
+
+1. Install dependencies:
 ```bash
 bun install
 ```
 
-To run:
-
+2. Setup environment variables:
 ```bash
-bun run index.ts
+cp .env.example .env
 ```
 
-This project was created using `bun init` in bun v1.3.5. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Edit `.env` file:
+```
+DATABASE_URL=your_supabase_connection_string
+```
+
+3. Run development server:
+```bash
+bun run dev
+```
+
+Server will run at `http://localhost:3000`
+
+## API Endpoints
+
+- `GET /` - Health check
+- `GET /health` - Status check
+- `GET /folders` - Get all folders
+- `GET /folders/:id/children` - Get folder children
+
+## Database Schema
+
+```sql
+CREATE TABLE folders (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  parent_id INTEGER REFERENCES folders(id),
+  type VARCHAR DEFAULT 'folder'
+);
+```
+
+## Project Structure
+
+```
+src/
+├── modules/
+│   └── folder/
+│       ├── folder.controller.ts
+│       ├── folder.service.ts
+│       ├── folder.repository.ts
+│       └── folder.types.ts
+├── app.ts
+├── db.ts
+└── index.ts
+```
