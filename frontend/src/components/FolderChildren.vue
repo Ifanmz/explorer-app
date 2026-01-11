@@ -64,4 +64,40 @@ defineProps<{ folders: Folder[] }>();
   word-break: break-word;
   color: #495057;
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .folder-children {
+    padding: 12px;
+  }
+  
+  .folder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .folder-children {
+    padding: 8px;
+  }
+  
+  .folder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+  }
+  
+  .folder-card {
+    padding: 8px;
+  }
+  
+  .folder-icon {
+    font-size: 36px;
+  }
+  
+  .folder-name {
+    font-size: 10px;
+  }
+}
 </style>

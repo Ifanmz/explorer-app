@@ -121,4 +121,42 @@ const hasChildren = (id: string) => {
 .nested {
   margin-left: 20px;
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .folder-row {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+  
+  .folder-icon {
+    font-size: 16px;
+  }
+  
+  .nested {
+    margin-left: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .folder-row {
+    padding: 8px;
+    font-size: 15px;
+  }
+  
+  .expand-icon {
+    width: 20px;
+    font-size: 12px;
+  }
+  
+  .folder-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  
+  .nested {
+    margin-left: 12px;
+  }
+}
 </style>

@@ -95,7 +95,8 @@ onMounted(async () => {
 }
 
 .search-input {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   padding: 8px 12px;
   border: 1px solid #ced4da;
   border-radius: 4px;
@@ -111,10 +112,12 @@ onMounted(async () => {
 .panels {
   display: flex;
   flex: 1;
+  flex-direction: row;
 }
 
 .left-panel {
   width: 300px;
+  min-width: 250px;
   border-right: 1px solid #d0d0d0;
   background: #f8f9fa;
   overflow-y: auto;
@@ -189,5 +192,51 @@ h3 {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .panels {
+    flex-direction: column;
+  }
+  
+  .left-panel {
+    width: 100%;
+    min-height: 40vh;
+    border-right: none;
+    border-bottom: 1px solid #d0d0d0;
+  }
+  
+  .search-input {
+    max-width: 100%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .search-bar {
+    padding: 8px 12px;
+  }
+  
+  .left-panel {
+    min-height: 35vh;
+  }
+  
+  .folder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+  }
+  
+  .folder-card {
+    padding: 8px;
+  }
+  
+  .folder-icon {
+    font-size: 36px !important;
+  }
+  
+  .folder-name {
+    font-size: 11px !important;
+  }
 }
 </style>

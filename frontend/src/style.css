@@ -65,6 +65,23 @@ button:focus-visible {
   padding: 0;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 13px;
+  }
+  
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
